@@ -145,7 +145,7 @@ Impact to operations/test activity
 <div class="row">
   <div class="input-group">
     <label for="start-date">Select A Date</label>
-    <input type="date" id="start-date" name="start-date">
+    <input type="date" id="start-date" name="start-date" required>
 </div>
   <div class="input-group">
     <input type="text" id="time" placeholder="Input time" required>
@@ -204,14 +204,15 @@ Impact to operations/test activity
 function toggleApprovedDropdown() {
     const workaroundSelect = document.getElementById('workaround');
     const extraGroup = document.getElementById('approved-extra-group');
-    const workaroundInput = document.getElementById('workaroundid'); // Get the input
+    const workaroundInput = document.getElementById('workaroundid');
     
     if (workaroundSelect.value === 'approved') {
         extraGroup.style.display = 'block';
-        workaroundInput.required = true;  // Make it required when visible
+        workaroundInput.required = true;
     } else {
         extraGroup.style.display = 'none';
-        workaroundInput.required = false; // Disable required when hidden
+        workaroundInput.required = false;
+        workaroundInput.value = ""; // ADD THIS: Clears the hidden field so it doesn't block submission
     }
 }
     function updateItems() {
