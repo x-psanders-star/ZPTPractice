@@ -66,7 +66,7 @@
 </head>
 <body>
 
-    <form>
+    <form id="zptform">
         <h2>Create ZPT Ticket</h2>
         <div class="input-group">
             <label for="reason">Problem</label>
@@ -102,7 +102,7 @@ Impact to operations/test activity
         </div>
         <div class="input-group">
             <label for="location">Location</label>
-            <select id="severity" name="location">
+            <select id="location" name="location">
                 <option value="Las Vegas">Las Vegas</option>
                 <option value="San Fransisco">San Fransisco</option>
                 <option value="Austin">Austin</option>
@@ -138,7 +138,7 @@ Impact to operations/test activity
     </div>
 
     <div class="input-group">
-            <input type="text" id="summary" placeholder="Input vehicle number" required>
+            <input type="text" id="vehiclenum" placeholder="Input vehicle number" required>
         </select>
     </div>
 </div>
@@ -188,7 +188,7 @@ Impact to operations/test activity
     <div class="input-group">
             <label for="message">Workaround Details</label>
             <textarea id="workarounddetails" name="message" rows="10" ></textarea>
-    </div
+    </div>
       <div class="input-group">
             <label for="powercyclenumber">Number of Power Cycles</label>
             <input type="text" id="powercyclenumber" required>
@@ -196,6 +196,58 @@ Impact to operations/test activity
         <button type="submit">Submit</button>
 </form>
 <script>
+    document.getElementById('zptForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop the current page from refreshing
+
+    // 1. Gather the data from your form fields
+    const formData = {
+        "Problem Type": document.getElementById('problem').value,
+        "Summary": document.getElementById('summary').value,
+        "Severity": document.getElementById('severity').value,
+        "Location": document.getElementsByName('location')[0].value,
+        "Vehicle Type": document.getElementById('vehicle selector').value,
+        "Vehicle #": document.querySelectorAll('vehiclenum')[1].value, // Grabbing your second summary ID
+        "Date/Time": `${document.getElementById('start-date').value} at ${document.getElementById('time').value}`,
+        "Version": document.getElementById('version').value,
+        "Workaround": document.getElementById('workaround').value,
+        "Workaround ID": document.getElementById('workaroundid').value || "None",
+        "Details": document.getElementById('message').value
+    };
+
+    // 2. Create the HTML content for the new tab
+    let reportHTML = `
+        <html>
+        <head>
+            <title>ZPT Ticket Summary</title>
+            <style>
+                body { font-family: sans-serif; line-height: 1.6; padding: 40px; background: #f0f2f5; }
+                .card { background: white; padding: 30px; border-radius: 8px; max-width: 600px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+                h1 { color: #1a73e8; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+                .field { margin-bottom: 15px; border-bottom: 1px solid #fafafa; }
+                .label { font-weight: bold; color: #555; display: block; text-transform: uppercase; font-size: 0.8rem; }
+                .value { font-size: 1.1rem; color: #111; }
+            </style>
+        </head>
+        <body>
+            <div class="card">
+                <h1>Ticket Submission Report</h1>
+    `;
+
+    for (const [key, value] of Object.entries(formData)) {
+        reportHTML += `
+            <div class="field">
+                <span class="label">${key}</span>
+                <span class="value">${value}</span>
+            </div>`;
+    }
+
+    reportHTML += `</div></body></html>`;
+
+    // 3. Open in a new tab
+    const newWindow = window.open();
+    newWindow.document.write(reportHTML);
+    newWindow.document.close();
+});
     function toggleApprovedDropdown() {
     const workaroundSelect = document.getElementById('workaround');
     const extraGroup = document.getElementById('approved-extra-group');
