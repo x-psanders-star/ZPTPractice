@@ -129,7 +129,7 @@ Impact to operations/test activity
 </div>
 <div class="row">
     <div class="input-group">
-        <label for="category">Vehicle Selector</label>
+        <label for="vehicle selector">Vehicle Selector</label>
         <select id="vehicle selector" name="vehicle selector">
             <option value="B4">VH6.B4</option>
             <option value="B3">VH6.B3</option>
@@ -152,7 +152,7 @@ Impact to operations/test activity
     </div>
 </div>
  <div class="input-group">
-        <label for="category">Mission Phase</label>
+        <label for="mission phase">Mission Phase</label>
         <select id="mission phase" name="mission phase">
             <option value="charging">Charging</option>
             <option value="checklist">Checklist</option>
@@ -171,7 +171,7 @@ Impact to operations/test activity
         <input type="text" id="version" placeholder="Software version" required>
     </div>
      <div class="input-group">
-        <label for="category">Workaround Applied</label>
+        <label for="workaround">Workaround Applied</label>
         <select id="workaround" name="workaroundapplied" onchange="toggleApprovedDropdown()">
             <option value="engineeringworkaround">Engineering Workaround</option>
             <option value="vehiclepowercycle">Vehicle Power Cycle</option>
@@ -183,7 +183,7 @@ Impact to operations/test activity
     </div>        
     <div id="approved-extra-group" class="input-group" style="display: none;">
         <label for="workaroundid">Workaround ID</label>
-        <input type="text" id="workaroundid" placeholder="input workaround id" required>
+        <input type="text" id="workaroundid" placeholder="input workaround id">
     </div>
     <div class="input-group">
             <label for="message">Workaround Details</label>
@@ -208,11 +208,11 @@ function toggleApprovedDropdown() {
     
     if (workaroundSelect.value === 'approved') {
         extraGroup.style.display = 'block';
-        workaroundInput.required = true;
+        workaroundInput.setAttribute('required', ''); // Add required only when visible
     } else {
         extraGroup.style.display = 'none';
-        workaroundInput.required = false;
-        workaroundInput.value = ""; // ADD THIS: Clears the hidden field so it doesn't block submission
+        workaroundInput.removeAttribute('required'); // Remove it when hidden
+        workaroundInput.value = ""; 
     }
 }
     function updateItems() {
@@ -247,7 +247,7 @@ function toggleApprovedDropdown() {
         "Summary": document.getElementById('summary').value,
         "Severity": document.getElementById('severity').value,
         "Vehicle Type": document.getElementById('vehicle selector').value,
-        "Vehicle #": document.getElementById('vehiclenum').value, // Ensure ID is fixed on line 159
+        "Vehicle #": document.getElementById('#vehiclenum').value, // Ensure ID is fixed on line 159
         "Date/Time": `${document.getElementById('start-date').value} at ${document.getElementById('time').value}`,
         "Workaround": document.getElementById('workaround').value,
         "Workaround ID": document.getElementById('workaroundid').value || "None"
