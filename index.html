@@ -110,25 +110,49 @@
             </select>
         </div>
         <div class="row">
-    <div class="input-group">
-        <label for="category">Category</label>
-        <select id="category" name="category">
-            <option value="tech">Tech</option>
-            <option value="design">Design</option>
-        </select>
-    </div>
+            <div class="input-group">
+                <label for="category">Category</label>
+                <select id="category" onchange="updateItems()">
+                    <option value="">Select Category</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Tech">Tech</option>
+            </select>
+        </div>
 
-    <div class="input-group">
-        <label for="priority">Priority</label>
-        <select id="priority" name="priority">
-            <option value="low">Low</option>
-            <option value="high">High</option>
-        </select>
+        <div class="input-group">
+            <label for="items">Items</label>
+            <select id="items">
+                <option value="">Select Item</option>
+            </select>
     </div>
 </div>
 
         <button type="submit">Submit</button>
-    </form>
+</form>
+<script>
+    function updateItems() {
+        const category = document.getElementById("category").value;
+        const itemSelect = document.getElementById("items");
 
+        // Object containing the options for each category
+        const options = {
+            "Fruit": ["Apple", "Banana", "Orange"],
+            "Tech": ["Laptop", "Phone", "Tablet"]
+        };
+
+        // Clear the second dropdown
+        itemSelect.innerHTML = '<option value="">Select Item</option>';
+
+        // If a valid category is selected, add its items
+        if (category && options[category]) {
+            options[category].forEach(item => {
+                const newOption = document.createElement("option");
+                newOption.value = item;
+                newOption.textContent = item;
+                itemSelect.appendChild(newOption);
+            });
+        }
+    }
+</script>
 </body>
 </html>
