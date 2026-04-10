@@ -88,7 +88,7 @@
             </select>
         </div>
         <<div class="input-group">
-            <label for="message">Message:</label>
+            <label for="message">Details</label>
             <textarea id="message" name="message" rows="10" >Who detected this issue?
 >
 How/Where was the issue observed
@@ -184,7 +184,15 @@ Impact to operations/test activity
     <div id="approved-extra-group" class="input-group" style="display: none;">
         <label for="approved-type">Workaround ID</label>
         <input type="text" id="workaroundid" placeholder="input workaround id" required>
-    </div>    
+    </div>
+    <div class="input-group">
+            <label for="message">Workaround Details</label>
+            <textarea id="workarounddetails" name="message" rows="10" ></textarea>
+    </div
+      <div class="input-group">
+            <label for="powercyclenumber">Number of Power Cycles</label>
+            <input type="text" id="powercyclenumber" required>
+        </div>
         <button type="submit">Submit</button>
 </form>
 <script>
