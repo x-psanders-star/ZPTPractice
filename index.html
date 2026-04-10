@@ -166,11 +166,38 @@ Impact to operations/test activity
             <option value="shutdown">Shut Down</option>
         </select>
     </div>
-            
-
+    <div class="input-group">
+        <label for="affectsversions">Affects Version/s</label>
+        <input type="text" id="version" placeholder="Software version" required>
+    </div>
+     <div class="input-group">
+        <label for="category">Workaround Applied</label>
+        <select id="workaround" name="workaroundapplied">
+            <option value="engineeringworkaround">Engineering Workaround</option>
+            <option value="vehiclepowercycle">Vehicle Power Cycle</option>
+            <option value="undocumented">Undocumented Workaround</option>
+            <option value="zcore">Restart ZCore</option>
+            <option value="approved">Approved Workaround</option>
+            <option value="acknowledge">Acknowledge or Ignore</option>
+        </select>
+    </div>        
+    <div id="approved-extra-group" class="input-group" style="display: none;">
+        <label for="approved-type">Workaround ID</label>
+        <input type="text" id="workaroundid" placeholder="input workaround id" required>
+    </div>    
         <button type="submit">Submit</button>
 </form>
 <script>
+    function toggleApprovedDropdown() {
+    const workaroundSelect = document.getElementById('workaround');
+    const extraGroup = document.getElementById('approved-extra-group');
+    
+    if (workaroundSelect.value === 'approved') {
+        extraGroup.style.display = 'block';
+    } else {
+        extraGroup.style.display = 'none';
+    }
+}
     function updateItems() {
         const category = document.getElementById("category").value;
         const itemSelect = document.getElementById("items");
