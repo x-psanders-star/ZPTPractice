@@ -10,10 +10,11 @@
             margin: 0;
             display: flex;
             justify-content: center; /* Horizontal center */
-            align-items: center;     /* Vertical center */
+            align-items: flex-start;     /* Vertical center */
             min-height: 100vh;       /* Full viewport height */
             background-color: #f0f2f5;
             font-family: sans-serif;
+            padding: 20px;
         }
 
         form {
@@ -22,7 +23,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 320px;
+            max-width: 350px;
         }
         textarea {
             text-align: left;
@@ -181,7 +182,7 @@ Impact to operations/test activity
         </select>
     </div>        
     <div id="approved-extra-group" class="input-group" style="display: none;">
-        <label for="approved-type">Workaround ID</label>
+        <label for="workaroundid">Workaround ID</label>
         <input type="text" id="workaroundid" placeholder="input workaround id" required>
     </div>
     <div class="input-group">
@@ -200,14 +201,17 @@ Impact to operations/test activity
 </form>
 <script>
     
-    function toggleApprovedDropdown() {
+function toggleApprovedDropdown() {
     const workaroundSelect = document.getElementById('workaround');
     const extraGroup = document.getElementById('approved-extra-group');
+    const workaroundInput = document.getElementById('workaroundid'); // Get the input
     
     if (workaroundSelect.value === 'approved') {
         extraGroup.style.display = 'block';
+        workaroundInput.required = true;  // Make it required when visible
     } else {
         extraGroup.style.display = 'none';
+        workaroundInput.required = false; // Disable required when hidden
     }
 }
     function updateItems() {
