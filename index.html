@@ -66,7 +66,7 @@
 </head>
 <body>
 
-    <form id="zptform">
+    <form id="zptForm">
         <h2>Create ZPT Ticket</h2>
         <div class="input-group">
             <label for="reason">Problem</label>
@@ -193,6 +193,10 @@ Impact to operations/test activity
             <input type="text" id="powercyclenumber" required>
         </div>
         <button type="submit">Submit</button>
+        <div id="results-display" style="margin-top: 20px; padding: 15px; border-top: 2px solid #eee; display: none;">
+            <h3>Submission Summary</h3>
+            <div id="results-content"></div>
+        </div>
 </form>
 <script>
     
@@ -229,57 +233,36 @@ Impact to operations/test activity
             });
         }
     }
-    document.getElementById('zptform').addEventListener('submit', function(e) {
-    e.preventDefault(); // Stop the current page from refreshing
+    document.getElementById('zptForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    // 1. Gather the data from your form fields
+    // 1. Gather the data
     const formData = {
         "Problem Type": document.getElementById('problem').value,
         "Summary": document.getElementById('summary').value,
         "Severity": document.getElementById('severity').value,
-        "Location": document.getElementsByName('location')[0].value,
         "Vehicle Type": document.getElementById('vehicle selector').value,
-        "Vehicle #": document.querySelectorAll('vehiclenum')[1].value, // Grabbing your second summary ID
+        "Vehicle #": document.getElementById('vehiclenum').value, // Ensure ID is fixed on line 159
         "Date/Time": `${document.getElementById('start-date').value} at ${document.getElementById('time').value}`,
-        "Version": document.getElementById('version').value,
         "Workaround": document.getElementById('workaround').value,
-        "Workaround ID": document.getElementById('workaroundid').value || "None",
-        "Details": document.getElementById('message').value
+        "Workaround ID": document.getElementById('workaroundid').value || "None"
     };
 
-    // 2. Create the HTML content for the new tab
-    let reportHTML = `
-        <html>
-        <head>
-            <title>ZPT Ticket Summary</title>
-            <style>
-                body { font-family: sans-serif; line-height: 1.6; padding: 40px; background: #f0f2f5; }
-                .card { background: white; padding: 30px; border-radius: 8px; max-width: 600px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-                h1 { color: #1a73e8; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-                .field { margin-bottom: 15px; border-bottom: 1px solid #fafafa; }
-                .label { font-weight: bold; color: #555; display: block; text-transform: uppercase; font-size: 0.8rem; }
-                .value { font-size: 1.1rem; color: #111; }
-            </style>
-        </head>
-        <body>
-            <div class="card">
-                <h1>Ticket Submission Report</h1>
-    `;
-
+    // 2. Format the output
+    let output = "";
     for (const [key, value] of Object.entries(formData)) {
-        reportHTML += `
-            <div class="field">
-                <span class="label">${key}</span>
-                <span class="value">${value}</span>
-            </div>`;
+        output += `<p><strong>${key}:</strong> ${value}</p>`;
     }
 
-    reportHTML += `</div></body></html>`;
+    // 3. Show the results container and inject the text
+    const resultsDiv = document.getElementById('results-display');
+    const contentDiv = document.getElementById('results-content');
+    
+    contentDiv.innerHTML = output;
+    resultsDiv.style.display = 'block';
 
-    // 3. Open in a new tab
-    const newWindow = window.open();
-    newWindow.document.write(reportHTML);
-    newWindow.document.close();
+    // Optional: Smooth scroll to results
+    resultsDiv.scrollIntoView({ behavior: 'smooth' });
 });
 </script>
 </body>
