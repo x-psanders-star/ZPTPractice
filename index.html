@@ -93,7 +93,7 @@
 >
 How/Where was the issue observed
 >
-What is the issue obderved?
+What is the issue observed?
 >
 Why is this an issue?
 >
@@ -196,6 +196,40 @@ Impact to operations/test activity
         <button type="submit">Submit</button>
 </form>
 <script>
+    
+    function toggleApprovedDropdown() {
+    const workaroundSelect = document.getElementById('workaround');
+    const extraGroup = document.getElementById('approved-extra-group');
+    
+    if (workaroundSelect.value === 'approved') {
+        extraGroup.style.display = 'block';
+    } else {
+        extraGroup.style.display = 'none';
+    }
+}
+    function updateItems() {
+        const category = document.getElementById("category").value;
+        const itemSelect = document.getElementById("items");
+
+        // Object containing the options for each category
+        const options = {
+            "testing": ["Training","EX testing","SIV PRC Testing","SIV Pre-PRC","Stability Testing","SW Development","SW Intergration Acceptance"],
+            "rider service": ["VH6 ZIP (Zoox Internal Pilot)","VH6 Service"]
+        };
+
+        // Clear the second dropdown
+        itemSelect.innerHTML = '<option value="">Select Item</option>';
+
+        // If a valid category is selected, add its items
+        if (category && options[category]) {
+            options[category].forEach(item => {
+                const newOption = document.createElement("option");
+                newOption.value = item;
+                newOption.textContent = item;
+                itemSelect.appendChild(newOption);
+            });
+        }
+    }
     document.getElementById('zptForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Stop the current page from refreshing
 
@@ -248,39 +282,6 @@ Impact to operations/test activity
     newWindow.document.write(reportHTML);
     newWindow.document.close();
 });
-    function toggleApprovedDropdown() {
-    const workaroundSelect = document.getElementById('workaround');
-    const extraGroup = document.getElementById('approved-extra-group');
-    
-    if (workaroundSelect.value === 'approved') {
-        extraGroup.style.display = 'block';
-    } else {
-        extraGroup.style.display = 'none';
-    }
-}
-    function updateItems() {
-        const category = document.getElementById("category").value;
-        const itemSelect = document.getElementById("items");
-
-        // Object containing the options for each category
-        const options = {
-            "testing": ["Training","EX testing","SIV PRC Testing","SIV Pre-PRC","Stability Testing","SW Development","SW Intergration Acceptance"],
-            "rider service": ["VH6 ZIP (Zoox Internal Pilot)","VH6 Service"]
-        };
-
-        // Clear the second dropdown
-        itemSelect.innerHTML = '<option value="">Select Item</option>';
-
-        // If a valid category is selected, add its items
-        if (category && options[category]) {
-            options[category].forEach(item => {
-                const newOption = document.createElement("option");
-                newOption.value = item;
-                newOption.textContent = item;
-                itemSelect.appendChild(newOption);
-            });
-        }
-    }
 </script>
 </body>
 </html>
