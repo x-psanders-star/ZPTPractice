@@ -241,22 +241,30 @@ function toggleApprovedDropdown() {
     document.getElementById('zptForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // 1. Gather the data
+// 1. Gather the data
     const formData = {
         "Problem Type": document.getElementById('problem').value,
         "Summary": document.getElementById('summary').value,
         "Severity": document.getElementById('severity').value,
+        "Details": document.getElementById('message').value, // Added this
+        "Location": document.getElementById('location').value,
         "Vehicle Type": document.getElementById('vehicle selector').value,
-        "Vehicle": document.getElementById('vehiclenum').value, // Ensure ID is fixed on line 159
+        "Vehicle #": document.getElementById('vehiclenum').value,
         "Date/Time": `${document.getElementById('start-date').value} at ${document.getElementById('time').value}`,
         "Workaround": document.getElementById('workaround').value,
-        "Workaround ID": document.getElementById('workaroundid').value || "None"
+        "Workaround ID": document.getElementById('workaroundid').value || "None",
+        "Workaround Details": document.getElementById('workarounddetails').value // Added this
     };
 
-    // 2. Format the output
+   // 2. Format the output
     let output = "";
     for (const [key, value] of Object.entries(formData)) {
-        output += `<p><strong>${key}:</strong> ${value}</p>`;
+        // Use <pre> tags for Details to preserve line breaks, otherwise use <p>
+        if (key === "Details" || key === "Workaround Details") {
+            output += `<p><strong>${key}:</strong></p><pre style="white-space: pre-wrap; font-family: inherit; background: #f9f9f9; padding: 10px; border-radius: 4px;">${value}</pre>`;
+        } else {
+            output += `<p><strong>${key}:</strong> ${value}</p>`;
+        }
     }
 
     // 3. Show the results container and inject the text
