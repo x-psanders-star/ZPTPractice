@@ -111,18 +111,18 @@
         </div>
         <div class="row">
             <div class="input-group">
-                <label for="category">Category</label>
+                <label for="category">Found During</label>
                 <select id="category" onchange="updateItems()">
-                    <option value="">Select Category</option>
-                    <option value="Fruit">Fruit</option>
-                    <option value="Tech">Tech</option>
+                    <option value="">Pick an option</option>
+                    <option value="testing">Testing</option>
+                    <option value="rider service">Rider Service</option>
             </select>
         </div>
 
         <div class="input-group">
             <label for="items">Items</label>
             <select id="items">
-                <option value="">Select Item</option>
+                <option value="">Pick an option</option>
             </select>
     </div>
 </div>
@@ -136,8 +136,8 @@
 
         // Object containing the options for each category
         const options = {
-            "Fruit": ["Apple", "Banana", "Orange"],
-            "Tech": ["Laptop", "Phone", "Tablet"]
+            "testing": ["Training","EX testing","SIV PRC Testing","SIV Pre-PRC","Stability Testing","SW Development","SW Intergration Acceptance"],
+            "rider service": ["VH6 ZIP (Zoox Internal Pilot)","VH6 Service"]
         };
 
         // Clear the second dropdown
