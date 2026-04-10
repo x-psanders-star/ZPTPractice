@@ -37,14 +37,25 @@
 <body>
 
     <form>
-        <h2>Login</h2>
+        <h2>Create ZPT Ticket</h2>
         <div class="input-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" required>
+            <label for="reason">Problem</label>
+            <select id="problem" name="reason">
+                <option value="problem">Problem</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="summary">Summary</label>
+            <input type="text" id="summary" required>
         </div>
         <div class="input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" required>
+            <label for="severity">Severity</label>
+            <select id="severity" name="severity">
+                <option value="SO">SO</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+            </select>
         </div>
         <button type="submit">Submit</button>
     </form>
