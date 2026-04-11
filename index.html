@@ -299,7 +299,7 @@ function toggleApprovedDropdown() {
     for (const [key, value] of Object.entries(formData)) {
         // Use <pre> tags for Details to preserve line breaks, otherwise use <p>
         if (key === "Details" || key === "Workaround Details") {
-            output += `<p><strong>${key}:</strong></p><pre style="white-space: pre-wrap; font-family: inherit; background: #f9f9f9; padding: 10px; border-radius: 4px;">${value}</pre>`;
+            output += `<p><strong>${key}:</strong></p><pre style="white-space: pre-wrap; font-family: inherit; background: #3d3d3d; padding: 10px; border-radius: 4px;">${value}</pre>`;
         } else {
             output += `<p><strong>${key}:</strong> ${value}</p>`;
         }
