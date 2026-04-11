@@ -5,65 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centered Form</title>
     <style>
-        /* This makes the body fill the whole screen and centers the content */
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center; /* Horizontal center */
-            align-items: flex-start;     /* Vertical center */
-            min-height: 100vh;       /* Full viewport height */
-            background-color: #f0f2f5;
-            font-family: sans-serif;
-            padding: 20px;
-        }
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        background-color: #000000; /* Black Background */
+        font-family: sans-serif;
+        padding: 20px;
+        color: white; /* Makes text readable against dark backgrounds */
+    }
 
-        form {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 350px;
-        }
-        textarea {
-            text-align: left;
-            padding-left: 10px;
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical; /* Allows user to stretch it down, but not sideways */
-        }    
+    form {
+        background: #2d2d2d; /* Dark Grey Form */
+        padding: 2rem;
+        border-radius: 12px; /* Rounded corners for the form */
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        width: 100%;
+        max-width: 500px; /* Wider form */
+    }
 
-        .input-group {
-            margin-bottom: 1rem;
-        }
-        /* This creates the side-by-side layout */
-        .row {
-            display: flex;
-            gap: 15px; /* Space between the two dropdowns */
-            margin-bottom: 1rem;
-        }
+    /* Target all input types for rounded corners and full width */
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        box-sizing: border-box;
+        border: 1px solid #444;
+        border-radius: 8px; /* Rounded corners for inputs */
+        background-color: #3d3d3d; /* Slightly lighter grey for inputs */
+        color: white;
+        text-align: left;
+    }
 
-        /* This ensures each group takes up equal space */
-        .row .input-group {
-            flex: 1; 
-            margin-bottom: 0; /* Remove bottom margin so they align perfectly */
-        }
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
 
-        /* Optional: Make them stack on top of each other on mobile screens */
-        @media (max-width: 480px) {
+    .input-group {
+        margin-bottom: 1.2rem;
+    }
+
+    .row {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 1rem;
+    }
+
+    .row .input-group {
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 480px) {
         .row {
             flex-direction: column;
         }
-    }    
+    }
 
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
 
-        label { display: block; margin-bottom: 5px; }
-        input { width: 100%; padding: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; cursor: pointer; margin-top: 10px; }
-    </style>
+    button {
+        width: 100%;
+        padding: 12px;
+        cursor: pointer;
+        margin-top: 15px;
+        background-color: #1a73e8; /* Blue button for contrast */
+        color: white;
+        border: none;
+        border-radius: 8px; /* Rounded corners for button */
+        font-weight: bold;
+    }
+    
+    button:hover {
+        background-color: #1557b0;
+    }
+</style>
 </head>
 <body>
 
