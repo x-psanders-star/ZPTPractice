@@ -87,6 +87,17 @@
     button:hover {
         background-color: #1557b0;
     }
+    .form-row {
+      display: flex;
+      gap: 20px; /* Adjusts the space between the two inputs */
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      flex: 1; /* Ensures both inputs take up equal width */
+      display: flex;
+      flex-direction: column;
+    }
 </style>
 </head>
 <body>
@@ -151,30 +162,33 @@ Impact to operations/test activity
             </select>
     </div>
 </div>
-<div class="row">
-    <div class="input-group">
-        <label for="vehicle selector">Vehicle Selector</label>
-        <select id="vehicle selector" name="vehicle selector">
-            <option value="B4">VH6.B4</option>
-            <option value="B3">VH6.B3</option>
-            <option value="B2">VH6.B2</option>
-            <option value="B1">VH6.B1</option>
-        </select>
+</div> 
+    </div> <div class="row">
+        <div class="input-group">
+            <label for="vehicle selector">Vehicle Selector</label>
+            <select id="vehicle selector" name="vehicle selector">
+                <option value="B4">VH6.B4</option>
+                <option value="B3">VH6.B3</option>
+                <option value="B2">VH6.B2</option>
+                <option value="B1">VH6.B1</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="vehiclenum">Vehicle Number</label>
+            <input type="text" id="vehiclenum" placeholder="Input vehicle number" required>
+        </div>
     </div>
 
-    <div class="input-group">
-            <input type="text" id="vehiclenum" placeholder="Input vehicle number" required>
+    <div class="row">
+        <div class="input-group">
+            <label for="start-date">Select A Date</label>
+            <input type="date" id="start-date" name="start-date" required>
+        </div>
+        <div class="input-group">
+            <label for="time">Time</label>
+            <input type="text" id="time" placeholder="Input time" required>
+        </div>
     </div>
-</div>
-<div class="row">
-  <div class="input-group">
-    <label for="start-date">Select A Date</label>
-    <input type="date" id="start-date" name="start-date" required>
-</div>
-  <div class="input-group">
-    <input type="text" id="time" placeholder="Input time" required>
-    </div>
-</div>
  <div class="input-group">
         <label for="mission phase">Mission Phase</label>
         <select id="mission phase" name="mission phase">
