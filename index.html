@@ -301,7 +301,7 @@ function toggleApprovedDropdown() {
         if (key === "Details" || key === "Workaround Details") {
             output += `<p><strong>${key}:</strong></p><pre style="white-space: pre-wrap; font-family: inherit; background: #3d3d3d; padding: 10px; border-radius: 4px;">${value}</pre>`;
         } else {
-            output += `<p><strong>${key}:</strong> ${value}</p>`;
+            output += `<p><strong>${key}:</strong></p><pre style="white-space: pre-wrap; overflow-wrap: break-word; font-family: inherit; background: #3d3d3d; padding: 10px; border-radius: 4px;">${value}</pre>`;
         }
     }
 
